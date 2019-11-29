@@ -15,7 +15,7 @@ SSH Tunnel can be quite useful for a number of tasks when access to required res
 
 Command Skeleton
 
-ssh -nNT [-i privateKey] {local-ip}:{localport}:{service-host}:{service-port} {user}@{remote-host}
+ssh -nNT [-i privateKey] -L {local-ip}:{localport}:{service-host}:{service-port} {user}@{remote-host}
   
 Explanation: 
 - -nNT are three options used to ensure we are intending to create tunnel and not ssh connection.
@@ -28,6 +28,6 @@ Explanation:
 
 Examples:
 ````shell  
-  ssh -nNT -i id_rsa 127.0.0.1:15432:pgdb.example.com:5432 dbuser@bastionhost.example.com
+  ssh -nNT -i id_rsa -L 127.0.0.1:15432:pgdb.example.com:5432 dbuser@bastionhost.example.com
 ````  
   This command will open a port 15432 on 127.0.0.1 tunneling through pgdb.example.com host which can be accessed only from bastionhost.example.com
